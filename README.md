@@ -49,6 +49,7 @@ If you don't want to change the firmware yourself, download the latest `.hex` fi
 
 ## Next steps
 
+- **Optional** Stock fan duct[1](https://www.thingiverse.com/thing:3772311)[2](https://www.thingiverse.com/thing:3763851) replacement. 
 - **Mandatory** [Extruder PID auto tuning](https://github.com/davidramiro/Marlin-Ai3M/wiki/Calibration#pid-tuning)
 - **Mandatory** [Extruder calibration](https://github.com/davidramiro/Marlin-Ai3M/wiki/Calibration#extruder-steps)
 - **Recommended** [Manual Mesh Bed Leveling](https://github.com/davidramiro/Marlin-Ai3M#manual-mesh-bed-leveling)
