@@ -47,6 +47,13 @@ If you don't want to change the firmware yourself, download the latest `.hex` fi
 - `M502` - load hard coded default values
 - `M500` - save them to EEPROM
 
+## Next steps
+
+- **Mandatory** [Extruder PID auto tuning](https://github.com/davidramiro/Marlin-Ai3M/wiki/Calibration#pid-tuning)
+- **Mandatory** [Extruder calibration](https://github.com/davidramiro/Marlin-Ai3M/wiki/Calibration#extruder-steps)
+- **Recommended** [Manual Mesh Bed Leveling](https://github.com/davidramiro/Marlin-Ai3M#manual-mesh-bed-leveling)
+- **Recommended** [Check FAQ in davidramiro's repo](https://github.com/davidramiro/Marlin-AI3M/wiki/Frequently-Asked-Questions)
+
 ## Credits
 Marlin-Ai3M-2.0.x administrator:
 - David Ramiro [[@davidramiro](https://github.com/davidramiro)]
