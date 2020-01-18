@@ -2,45 +2,13 @@
 
 [![Downloads](https://img.shields.io/github/downloads/rkolosovskyi/Marlin-A4MaxPro-2.0.x/total.svg?style=flat)](https://github.com/rkolosovskyi/Marlin-A4MaxPro-2.0.x/releases) [![Open Issues](https://img.shields.io/github/issues-raw/rkolosovskyi/Marlin-A4MaxPro-2.0.x.svg?style=flat)](https://github.com/rkolosovskyi/Marlin-A4MaxPro-2.0.x/issues?q=is%3Aopen+is%3Aissue) [![License](https://img.shields.io/github/license/rkolosovskyi/Marlin-A4MaxPro-2.0.x.svg?style=flat)](https://github.com/rkolosovskyi/Marlin-A4MaxPro-2.0.x/blob/master/LICENSE) [![Latest Release](https://img.shields.io/github/release/rkolosovskyi/Marlin-A4MaxPro-2.0.x.svg?style=flat)](https://github.com/rkolosovskyi/Marlin-A4MaxPro-2.0.x/releases/latest/) [![Last commit](https://img.shields.io/github/last-commit/rkolosovskyi/Marlin-A4MaxPro-2.0.x.svg?style=flat)](https://github.com/rkolosovskyi/Marlin-A4MaxPro-2.0.x/commits/)  [![Travis CI](https://api.travis-ci.org/rkolosovskyi/Marlin-A4MaxPro-2.0.x.svg?branch=master)](https://travis-ci.org/rkolosovskyi/Marlin-A4MaxPro-2.0.x)  
 
-**Beta build - use with caution!**
+## Beta build - use with caution!
 
-This is the newest version of the [Marlin Firmware](https://github.com/MarlinFirmware/Marlin), customized and optimized for the 4Max Pro based on [davidramiro's Ai3M-2.0.x repo](https://github.com/davidramiro/Marlin-Ai3M-2.0.x) and [alfrank's changes](https://drucktipps3d.de/forum/topic/anycubic-4max-pro-marlin-1-1-9-firmware-ai3m-basierend/) for the Anycubic 4Max Pro. The DWIN TFT screen is based on [derhopp's repo](https://github.com/derhopp/Marlin-with-Anycubic-i3-Mega-TFT) with his remarkable efforts to get this working with the latest versions of Marlin.
-
-**Make sure to take a look at the [Wiki](https://github.com/davidramiro/Marlin-Ai3M-2.0.x/wiki/) in [davidramiro's Ai3M-2.0.x repo](https://github.com/davidramiro/Marlin-Ai3M-2.0.x) and also the [FAQ](https://github.com/davidramiro/Marlin-Ai3M-2.0.x/wiki/Frequently-Asked-Questions).**
-
-## Why should use this firmware?
-Anycubic's touchscreen implementation is very hacked together and is based on the old Marlin beta version 1.1.0-RC8.
-In addition, the wrong thermistor for the hotend is entered in the stock firmware, which has been fixed in this version.
-Also if your hotbed is concave or not straight you can use the [mesh bed leveling](https://github.com/davidramiro/Marlin-Ai3M-2.0.x#manual-mesh-bed-leveling).
-
-## How to use?
-**Warning: If your 4Max Pro works satisfactorily for you there is no reason to do a firmware update.**
-
-- There is always a way back to the original firmware. Before the update, please note the currently installed version: Menu Tools / About / Firmware Version on the display of the printer.
-- If you don't want to change the firmware yourself, you can simply use Cura to load the latest `.hex` file from the [release](https://github.com/Poket-Jony/Marlin-A4MaxPro/releases).
-- If you want to go back to the Original Anycubic 1.1.7 (Marlin 1.1.0-RC8) firmware download it from [here](https://drive.google.com/file/d/1FwKHQcOxPabLgirkihu3LnBMuHuZLqZR/view)
-- After flashing the firmware, no matter which way, you have to reset and save the EEPROM values using a terminal program (e.g. [Pronterface](https://www.pronterface.com/)).
-    - connect the printer to the computer via USB cable
-    - open the terminal program, select the appropriate USB serial interface (on Mac: `SLAB_USBtoUART`)
-    - change `baud rate` or `Baudrate` to `250000 bps`
-    - connect and wait for the EEPROM values to be output
-    - then enter the following: `M502` and `M500`
-- Now you can disconnect again, for safety's turn the printer off and on again.
-- The new firmware is shown in the printer display (see above) as `v2.0.0`.
-
-#### Info: The original Anycubic firmware is set to a baud rate of `115200 bps`.
-
-## Known Issues
-#### [Marlin-A4MaxPro-2.0.x/v1.4.5](https://github.com/Poket-Jony/Marlin-A4MaxPro-2.0.x/releases/tag/v1.4.5)
-- LED control: It would be better to enable `case lights` menu option with PWM control
-- Light flickers when printing
-- PID from the hotend no longer fits => Can be fixed by [PID tuning](https://github.com/davidramiro/Marlin-Ai3M-2.0.x/wiki/Calibration#pid-tuning)
-
-#### [Marlin-Ai3M-2.0.x/v1.4.5](https://github.com/davidramiro/Marlin-Ai3M-2.0.x/releases/tag/v1.4.5)
-
-#### [Marlin/2.0.0](https://github.com/MarlinFirmware/Marlin/releases/tag/2.0.0)
-- Mixing Extruder with G10/G11 may have quirks
-- Sensor-less probing is still pretty experimental
+This is the newest version of the [Marlin Firmware](https://github.com/MarlinFirmware/Marlin), customized and optimized for the 4Max Pro 3D printer, based on:
+- [davidramiro's Ai3M-2.0.x repo](https://github.com/davidramiro/Marlin-Ai3M-2.0.x)
+- [Poket-Jony's Marlin-A4MaxPro-2.0.x](https://github.com/Poket-Jony/Marlin-A4MaxPro-2.0.x)
+- [alfrank's changes](https://drucktipps3d.de/forum/topic/anycubic-4max-pro-marlin-1-1-9-firmware-ai3m-basierend/)
+The DWIN TFT screen is based on [derhopp's repo](https://github.com/derhopp/Marlin-with-Anycubic-i3-Mega-TFT) with his remarkable efforts to get this working with the latest versions of Marlin.
 
 ## Credits
 Marlin-Ai3M-2.0.x administrator:
