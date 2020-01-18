@@ -11,6 +11,42 @@ This is the newest version of the [Marlin Firmware](https://github.com/MarlinFir
 
 The DWIN TFT screen is based on [derhopp's repo](https://github.com/derhopp/Marlin-with-Anycubic-i3-Mega-TFT) with his remarkable efforts to get this working with the latest versions of Marlin.
 
+## How to flash this?
+
+**There is always a way back to the original firmware!**
+
+If you want to go back to the Original Anycubic 1.1.7 (Marlin 1.1.0-RC8) firmware download it from [here](https://drive.google.com/file/d/1FwKHQcOxPabLgirkihu3LnBMuHuZLqZR/view).
+
+After flashing the firmware, no matter which way, you have to reset (load default) EEPROM values using a terminal program: (e.g. [Pronterface](https://www.pronterface.com/)):
+- connect the printer to the computer via USB cable
+- open the terminal program, select the appropriate USB serial interface (on Mac: `SLAB_USBtoUART`)
+- change `baud rate` or `Baudrate` to `250000 bps`
+- connect and wait for the EEPROM values to be output
+- then send the following commands: `M502` and `M500`
+
+### Use precompiled hex:
+If you don't want to change the firmware yourself, download the latest `.hex` file from the [releases](https://github.com/rkolosovskyi/Marlin-A4MaxPro-2.0.x/releases).
+
+### Or compile it yourself:
+
+- Download and install [Arduino IDE](https://www.arduino.cc/en/main/software)
+- Clone or download this repo
+- Browse into the Marlin folder and run `Marlin.ino`
+- In the IDE, under `Tools -> Board` select `Genuino Mega 2560` and `ATmega2560`
+- Open Marlin.ino in the Marlin directory of this repo
+- [Customize if needed](http://marlinfw.org/docs/configuration/configuration.html#configuring-marlin)
+(**Configuration.h and Configuration_adv.h files are located in Marlin folder**)
+- Under `Sketch`, select `Export compiled binary`
+- Look for the .hex file in the Marlin directory (only use the `Marlin.ino.hex`, not the `Marlin.ino.with_bootloader.hex`!)
+
+### After obtaining the hex file:
+
+- Flash the hex with Cura, OctoPrint or similar
+- Use a tool with a terminal (OctoPrint, Pronterface, Repetier Host, ...) to send commands to your printer.
+- **Important** Connect to the printer and send the following commands:
+- `M502` - load hard coded default values
+- `M500` - save them to EEPROM
+
 ## Credits
 Marlin-Ai3M-2.0.x administrator:
 - David Ramiro [[@davidramiro](https://github.com/davidramiro)]
