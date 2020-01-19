@@ -11,6 +11,8 @@ This is the newest version of the [Marlin Firmware](https://github.com/MarlinFir
 
 The DWIN TFT screen is based on [derhopp's repo](https://github.com/derhopp/Marlin-with-Anycubic-i3-Mega-TFT) with his remarkable efforts to get this working with the latest versions of Marlin.
 
+**!!!Warning!!! It's highly recommended to use Octoprint, Repetier, Printrun or any other software to manage you printer, instead of using factory display. If you want to use the factory display only to manage your printer - it's better for you to use stock firmware.
+
 ## How to flash this?
 
 **There is always a way back to the original firmware!**
