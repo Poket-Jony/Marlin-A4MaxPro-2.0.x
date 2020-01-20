@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../Marlin.h"
+#include "../MarlinCore.h"
 #include "../core/language.h"
 #include "../core/macros.h"
 #include "../core/serial.h"

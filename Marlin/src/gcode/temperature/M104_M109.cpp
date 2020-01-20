@@ -30,7 +30,7 @@
 #include "../../module/planner.h"
 #include "../../lcd/ultralcd.h"
 
-#include "../../Marlin.h" // for startOrResumeJob, etc.
+#include "../../MarlinCore.h" // for startOrResumeJob, etc.
 
 #ifdef ANYCUBIC_TFT_MODEL
   #include "../../lcd/anycubic_TFT.h"

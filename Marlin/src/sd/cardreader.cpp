@@ -26,7 +26,7 @@
 
 #include "cardreader.h"
 
-#include "../Marlin.h"
+#include "../MarlinCore.h"
 #include "../lcd/ultralcd.h"
 #include "../module/planner.h"
 #include "../module/printcounter.h"
@@ -678,7 +678,7 @@ void CardReader::selectFileByIndex(const uint16_t nr) {
 //
 void CardReader::selectFileByName(const char * const match) {
   #if ENABLED(SDSORT_CACHE_NAMES)
-    for (int nr = 0; nr < sort_count; nr++)
+    for (uint16_t nr = 0; nr < sort_count; nr++)
       if (strcasecmp(match, sortshort[nr]) == 0) {
         strcpy(filename, sortshort[nr]);
         strcpy(longFilename, sortnames[nr]);
@@ -1071,7 +1071,7 @@ void CardReader::printingHasFinished() {
     stopSDPrint();
 
     #if ENABLED(POWER_LOSS_RECOVERY)
-      removeJobRecoveryFile();
+      recovery.purge();
     #endif
 
     #if ENABLED(SD_FINISHED_STEPPERRELEASE) && defined(SD_FINISHED_RELEASECOMMAND)
