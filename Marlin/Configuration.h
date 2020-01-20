@@ -70,8 +70,9 @@
 
 // @section info
 
-// Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(davidramiro)" // Who made the changes.
+// Author info of this build printed to the host during boot and M115.
+// Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "David Ramiro, Jonas Plamann, Ruslan Kolosovskyi" 
 
 /**
  * *** VENDORS PLEASE READ ***

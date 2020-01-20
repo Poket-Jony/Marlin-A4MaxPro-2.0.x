@@ -33,7 +33,7 @@
  * vendor name, download location, GitHub account, etc.
  */
 #ifndef DETAILED_BUILD_VERSION
-  #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " (Poket-Jony, Github)"
+  #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " (David Ramiro, Jonas Plamann, Ruslan Kolosovskyi)"
 #endif
 
 /**
