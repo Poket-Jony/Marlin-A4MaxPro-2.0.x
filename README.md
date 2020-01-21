@@ -45,6 +45,8 @@ If you don't want to change the firmware yourself, download the latest `.hex` fi
 
 ### After obtaining the hex file:
 
+**The lates CP210x USB to UART Bridge VCP Driver for your printer you can download [here](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers).**
+
 - Flash the hex with Cura, OctoPrint or similar
 - Use a tool with a terminal (OctoPrint, Pronterface, Repetier Host, ...) to send commands to your printer.
 - **Important** Connect to the printer and send the following commands:
