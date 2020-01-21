@@ -45,6 +45,8 @@ If you don't want to change the firmware yourself, download the latest `.hex` fi
 
 ### After obtaining the hex file:
 
+**The lates CP210x USB to UART Bridge VCP Driver for your printer you can download [here](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers).**
+
 - Flash the hex with Cura, OctoPrint or similar
 - Use a tool with a terminal (OctoPrint, Pronterface, Repetier Host, ...) to send commands to your printer.
 - **Important** Connect to the printer and send the following commands:
@@ -58,6 +60,18 @@ If you don't want to change the firmware yourself, download the latest `.hex` fi
 - **Mandatory:** [Extruder calibration](https://github.com/davidramiro/Marlin-Ai3M/wiki/Calibration#extruder-steps)
 - **Recommended:** [Manual Mesh Bed Leveling](https://github.com/davidramiro/Marlin-Ai3M#manual-mesh-bed-leveling)
 - **Recommended:** [Check FAQ in davidramiro's repo](https://github.com/davidramiro/Marlin-AI3M/wiki/Frequently-Asked-Questions)
+
+## Linear Advance
+
+[Marlin Documentation](https://marlinfw.org/docs/features/lin_advance.html)
+
+- The default value for K-factor is `0.22`
+- To turn off the linear advance add `M900 K0` to your [Start Gcode](https://marlinfw.org/docs/features/lin_advance.html#adding-the-k-factor-to-the-g-code-start-script)
+- To calibrate your linear advance K-factor you can use [this form](https://marlinfw.org/tools/lin_advance/k-factor.html).
+- Linear advance K-factor should be calibrated for every material which you use. To set new K-factor use `M900` command **or**
+- Use Linear Advance Settings plugin for Cura to use specific K-factor value in your profiles (or leave it `0` to disable Linear Advance). Can be found in Material tab.
+
+
 
 ## Credits
 Marlin-Ai3M-2.0.x administrator:

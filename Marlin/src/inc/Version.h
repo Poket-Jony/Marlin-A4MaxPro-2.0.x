@@ -28,24 +28,28 @@
   #define SHORT_BUILD_VERSION "2.0.1"
 #endif
 
-  /**
-   * Verbose version identifier which should contain a reference to the location
-   * from where the binary was downloaded or the source code was compiled.
-   */
-  #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " (Poket-Jony, Github)"
+/**
+ * Verbose version identifier containing a unique identifier, such as the
+ * vendor name, download location, GitHub account, etc.
+ */
+#ifndef DETAILED_BUILD_VERSION
+  #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " (David Ramiro, Jonas Plamann, Ruslan Kolosovskyi)"
+#endif
 
-  /**
+/**
+ * The STRING_DISTRIBUTION_DATE represents when the binary file was built,
+ * here we define this default string as the date where the latest release
+ * version was tagged.
+ */
+#ifndef STRING_DISTRIBUTION_DATE
+  #define STRING_DISTRIBUTION_DATE "2020-01-20"
+#endif
+
+/**
  * Defines the version of the Marlin-A4MaxPro build. Not to be confused with
  * Marlin's own build number, e.g. 2.0.x.
  */
- #define CUSTOM_BUILD_VERSION "v2.0.1"
-
-  /**
-   * The STRING_DISTRIBUTION_DATE represents when the binary file was built,
-   * here we define this default string as the date where the latest release
-   * version was tagged.
-   */
-  #define STRING_DISTRIBUTION_DATE "2019-12-25"
+#define CUSTOM_BUILD_VERSION "2.0.1.1"
 
 /**
  * Minimum Configuration.h and Configuration_adv.h file versions.
@@ -82,7 +86,7 @@
    * has a distinct Github fork— the Source Code URL should just be the main
    * Marlin repository.
    */
-  #define SOURCE_CODE_URL "https://github.com/Poket-Jony/Marlin-A4MaxPro-2.0.x"
+  #define SOURCE_CODE_URL "https://github.com/rkolosovskyi/Marlin-A4MaxPro-2.0.x"
 
 /**
  * Default generic printer UUID.

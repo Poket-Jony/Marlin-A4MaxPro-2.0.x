@@ -120,7 +120,7 @@ namespace Language_el_gr {
   PROGMEM Language_Str MSG_VMAX_B                          = _UxGT("Vμεγ ") LCD_STR_B;
   PROGMEM Language_Str MSG_VMAX_C                          = _UxGT("Vμεγ ") LCD_STR_C;
   PROGMEM Language_Str MSG_VMAX_E                          = _UxGT("Vμεγ ") LCD_STR_E;
-  PROGMEM Language_Str MSG_VMAX_E                          = _UxGT("Vμεγ *");
+  PROGMEM Language_Str MSG_VMAX_EN                         = _UxGT("Vμεγ *");
   PROGMEM Language_Str MSG_VMIN                            = _UxGT("Vελαχ");
   PROGMEM Language_Str MSG_VTRAV_MIN                       = _UxGT("Vελάχ. μετατόπιση");
   PROGMEM Language_Str MSG_ACCELERATION                    = _UxGT("Accel");
@@ -148,7 +148,7 @@ namespace Language_el_gr {
   PROGMEM Language_Str MSG_LOAD_EEPROM                     = _UxGT("Φόρτωση");
   PROGMEM Language_Str MSG_RESTORE_FAILSAFE                = _UxGT("Επαναφορά ασφαλούς αντιγράφου");
   PROGMEM Language_Str MSG_REFRESH                         = LCD_STR_REFRESH  _UxGT("Ανανέωση");
-  PROGMEM Language_Str MSG_WATCH                           = _UxGT("Οθόνη πληροφόρησης");
+  PROGMEM Language_Str MSG_INFO_SCREEN                     = _UxGT("Οθόνη πληροφόρησης");
   PROGMEM Language_Str MSG_PREPARE                         = _UxGT("Προετοιμασία");
   PROGMEM Language_Str MSG_TUNE                            = _UxGT("Συντονισμός");
   PROGMEM Language_Str MSG_PAUSE_PRINT                     = _UxGT("Παύση εκτύπωσης");

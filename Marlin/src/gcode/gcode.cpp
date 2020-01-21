@@ -28,6 +28,10 @@
 #include "gcode.h"
 GcodeSuite gcode;
 
+#if ENABLED(WIFI_CUSTOM_COMMAND)
+  extern bool wifi_custom_command(char * const command_ptr);
+#endif
+
 #include "parser.h"
 #include "queue.h"
 #include "../module/motion.h"
@@ -49,7 +53,7 @@ GcodeSuite gcode;
   #include "../feature/cancel_object.h"
 #endif
 
-#include "../Marlin.h" // for idle() and suspend_auto_report
+#include "../MarlinCore.h" // for idle() and suspend_auto_report
 
 millis_t GcodeSuite::previous_move_ms;
 
@@ -319,6 +323,10 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 59: G59(); break;
       #endif
 
+      #if ENABLED(PROBE_TEMP_COMPENSATION)
+        case 76: G76(); break;                                    // G76: Calibrate first layer compensation values
+      #endif
+
       #if ENABLED(GCODE_MOTION_MODES)
         case 80: G80(); break;                                    // G80: Reset the current motion mode
       #endif
@@ -558,8 +566,8 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 665: M665(); break;                                  // M665: Set delta configurations
       #endif
 
-      #if ANY(DELTA, X_DUAL_ENDSTOPS, Y_DUAL_ENDSTOPS, Z_DUAL_ENDSTOPS)
-        case 666: M666(); break;                                  // M666: Set delta or dual endstop adjustment
+      #if ENABLED(DELTA) || HAS_EXTRA_ENDSTOPS
+        case 666: M666(); break;                                  // M666: Set delta or multiple endstop adjustment
       #endif
 
       #if ENABLED(FWRETRACT)
@@ -751,6 +759,10 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
 
       case 888: M888(); break;                                    // M888: Ultrabase cooldown (EXPERIMENTAL)
 
+      #if ENABLED(PROBE_TEMP_COMPENSATION)
+        case 871: M871(); break;                                  // M871: Print/reset/clear first layer temperature offset values
+      #endif
+
       #if ENABLED(LIN_ADVANCE)
         case 900: M900(); break;                                  // M900: Set advance K factor.
       #endif
@@ -784,7 +796,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         #endif
       #endif
 
-      #if HAS_DRIVER(L6470)
+      #if HAS_L64XX
         case 122: M122(); break;                                   // M122: Report status
         case 906: M906(); break;                                   // M906: Set or get motor drive level
         case 916: M916(); break;                                   // M916: L6470 tuning: Increase drive level until thermal warning
@@ -843,7 +855,11 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
 
     case 'T': T(parser.codenum); break;                           // Tn: Tool Change
 
-    default: parser.unknown_command_error();
+    default:
+      #if ENABLED(WIFI_CUSTOM_COMMAND)
+        if (wifi_custom_command(parser.command_ptr)) break;
+      #endif
+      parser.unknown_command_error();
   }
 
   if (!no_ok) queue.ok_to_send();

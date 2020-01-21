@@ -70,8 +70,9 @@
 
 // @section info
 
-// Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(davidramiro)" // Who made the changes.
+// Author info of this build printed to the host during boot and M115.
+// Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "David Ramiro, Jonas Plamann, Ruslan Kolosovskyi" 
 
 /**
  * *** VENDORS PLEASE READ ***
@@ -404,13 +405,14 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 5
+#define TEMP_SENSOR_0 11
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
 #define TEMP_SENSOR_5 0
-#define TEMP_SENSOR_BED 1
+#define TEMP_SENSOR_BED 11
+#define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -443,7 +445,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 295
+#define HEATER_0_MAXTEMP 300
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
@@ -475,9 +477,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // i3 Mega stock v5 hotend, 40W heater cartridge (3.6Ω @ 22°C)
-  #define  DEFAULT_Kp 18.58
-  #define  DEFAULT_Ki 1.38
-  #define  DEFAULT_Kd 62.40
+  #define  DEFAULT_Kp 25.29
+  #define  DEFAULT_Ki 2.17
+  #define  DEFAULT_Kd 73.53
 
   // Ultimaker
   // #define DEFAULT_Kp 22.2
@@ -530,9 +532,9 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
   //Anycubic i3 Mega Ultrabase (0.9Ω @ 22°C)
-  #define DEFAULT_bedKp 187.45
-  #define DEFAULT_bedKi 35.75
-  #define DEFAULT_bedKd 245.71
+  #define DEFAULT_bedKp 439.45
+  #define DEFAULT_bedKi 73.49
+  #define DEFAULT_bedKd 656.97
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -552,8 +554,8 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-#define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 170
+//#define PREVENT_COLD_EXTRUSION
+//#define EXTRUDE_MINTEMP 170
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
@@ -610,7 +612,7 @@
 #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
-#define USE_XMAX_PLUG
+//#define USE_XMAX_PLUG
 //#define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
 
@@ -657,24 +659,27 @@
  *
  * A4988 is assumed for unspecified drivers.
  *
- * Options: A4988, A5984, DRV8825, LV8729, L6470, TB6560, TB6600, TMC2100,
+ * Options: A4988, A5984, DRV8825, LV8729, L6470, L6474, POWERSTEP01,
+ *          TB6560, TB6600, TMC2100,
  *          TMC2130, TMC2130_STANDALONE, TMC2160, TMC2160_STANDALONE,
  *          TMC2208, TMC2208_STANDALONE, TMC2209, TMC2209_STANDALONE,
  *          TMC26X,  TMC26X_STANDALONE,  TMC2660, TMC2660_STANDALONE,
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
- * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
+ * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  TMC2208_STANDALONE // comment out for stock drivers
-#define Y_DRIVER_TYPE  TMC2208_STANDALONE // comment out for stock drivers
-#define Z_DRIVER_TYPE  TMC2208_STANDALONE // comment out for stock drivers
-#define X2_DRIVER_TYPE TMC2208_STANDALONE
-#define Y2_DRIVER_TYPE TMC2208_STANDALONE
-#define Z2_DRIVER_TYPE TMC2208_STANDALONE // comment out for stock drivers
-#define E0_DRIVER_TYPE TMC2208_STANDALONE // comment out for stock drivers
-#define E1_DRIVER_TYPE TMC2208_STANDALONE // comment out for stock drivers
-#define E2_DRIVER_TYPE TMC2208_STANDALONE
-#define E3_DRIVER_TYPE TMC2208_STANDALONE
-#define E4_DRIVER_TYPE TMC2208_STANDALONE
+//#define X_DRIVER_TYPE  A4988
+//#define Y_DRIVER_TYPE  A4988
+//#define Z_DRIVER_TYPE  A4988
+//#define X2_DRIVER_TYPE A4988
+//#define Y2_DRIVER_TYPE A4988
+//#define Z2_DRIVER_TYPE A4988
+//#define Z3_DRIVER_TYPE A4988
+//#define Z4_DRIVER_TYPE A4988
+//#define E0_DRIVER_TYPE A4988
+//#define E1_DRIVER_TYPE A4988
+//#define E2_DRIVER_TYPE A4988
+//#define E3_DRIVER_TYPE A4988
+//#define E4_DRIVER_TYPE A4988
 //#define E5_DRIVER_TYPE A4988
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
@@ -720,13 +725,13 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 92.6 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 80, 800, 445 }
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 6, 60 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 20, 80 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -739,7 +744,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 1200,  60, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 1200, 1200, 70, 40000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -754,9 +759,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          1500    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   1500    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   2000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -768,9 +773,9 @@
  */
 //#define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK  8.0
-  #define DEFAULT_YJERK  8.0
-  #define DEFAULT_ZJERK  0.4
+  #define DEFAULT_XJERK  8.2
+  #define DEFAULT_YJERK  8.2
+  #define DEFAULT_ZJERK  0.2
 
   //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
   #if ENABLED(LIMITED_JERK_EDITING)
@@ -930,7 +935,8 @@
  */
 #define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
 
-// Certain types of probes need to stay away from edges
+// Most probes should stay away from the edges of the bed, but
+// with NOZZLE_AS_PROBE this can be negative for a wider probing area.
 #define MIN_PROBE_EDGE 10
 
 // X and Y axis travel speed (mm/m) between probes
@@ -1029,7 +1035,7 @@
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false // set to true for stock drivers or TMC2208 with reversed connectors
 #define INVERT_Y_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-#define INVERT_Z_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+#define INVERT_Z_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
 
 // @section extruder
 
@@ -1059,11 +1065,11 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 215
-#define Y_BED_SIZE 215
+#define X_BED_SIZE 270
+#define Y_BED_SIZE 205
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -5
+#define X_MIN_POS -8
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
@@ -1954,10 +1960,11 @@
 // FYSETC variant of the MINI12864 graphic controller with SD support
 // https://wiki.fysetc.com/Mini12864_Panel/
 //
-//#define FYSETC_MINI_12864_X_X  // Type C/D/E/F. No tunable RGB Backlight by default
-//#define FYSETC_MINI_12864_1_2  // Type C/D/E/F. Simple RGB Backlight (always on)
-//#define FYSETC_MINI_12864_2_0  // Type A/B. Discreet RGB Backlight
-//#define FYSETC_MINI_12864_2_1  // Type A/B. Neopixel RGB Backlight
+//#define FYSETC_MINI_12864_X_X    // Type C/D/E/F. No tunable RGB Backlight by default
+//#define FYSETC_MINI_12864_1_2    // Type C/D/E/F. Simple RGB Backlight (always on)
+//#define FYSETC_MINI_12864_2_0    // Type A/B. Discreet RGB Backlight
+//#define FYSETC_MINI_12864_2_1    // Type A/B. Neopixel RGB Backlight
+//#define FYSETC_GENERIC_12864_1_1 // Larger display with basic ON/OFF backlight.
 
 //
 // Factory display for Creality CR-10
@@ -1967,6 +1974,11 @@
 // (For CR-10 owners who want to replace the Melzi Creality board but retain the display)
 //
 //#define CR10_STOCKDISPLAY
+
+//
+// Ender-2 OEM display, a variant of the MKS_MINI_12864
+//
+//#define ENDER2_STOCKDISPLAY
 
 //
 // ANET and Tronxy Graphical Controller
@@ -2036,9 +2048,11 @@
 //=============================================================================
 
 //
-// DGUS Touch Display with DWIN OS
+// DGUS Touch Display with DWIN OS. (Choose one.)
 //
-//#define DGUS_LCD
+//#define DGUS_LCD_UI_ORIGIN
+//#define DGUS_LCD_UI_FYSETC
+//#define DGUS_LCD_UI_HIPRECY
 
 //
 // Touch-screen LCD for Malyan M200 printers
