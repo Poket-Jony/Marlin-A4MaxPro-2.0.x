@@ -49,7 +49,7 @@
  * Defines the version of the Marlin-A4MaxPro build. Not to be confused with
  * Marlin's own build number, e.g. 2.0.x.
  */
-#define CUSTOM_BUILD_VERSION "4MP2.0.1.1"
+#define CUSTOM_BUILD_VERSION "2.0.1.1"
 
 /**
  * Minimum Configuration.h and Configuration_adv.h file versions.
@@ -86,7 +86,7 @@
    * has a distinct Github fork— the Source Code URL should just be the main
    * Marlin repository.
    */
-  #define SOURCE_CODE_URL "https://github.com/Poket-Jony/Marlin-A4MaxPro-2.0.x"
+  #define SOURCE_CODE_URL "https://github.com/rkolosovskyi/Marlin-A4MaxPro-2.0.x"
 
 /**
  * Default generic printer UUID.
