@@ -40,7 +40,7 @@ If you don't want to change the firmware yourself, download the latest `.hex` fi
 - Open Marlin.ino in the Marlin directory of this repo
 - [Customize if needed](http://marlinfw.org/docs/configuration/configuration.html#configuring-marlin)
 (**Configuration.h and Configuration_adv.h files are located in Marlin folder**)
-- Under `Sketch`, select `Export compiled binary`
+- Under `Sketch` menu, select `Export compiled binary`
 - Look for the .hex file in the Marlin directory (only use the `Marlin.ino.hex`, not the `Marlin.ino.with_bootloader.hex`!)
 
 ### After obtaining the hex file:
@@ -68,7 +68,7 @@ If you don't want to change the firmware yourself, download the latest `.hex` fi
 - The default value for K-factor is `0.22`
 - To turn off the linear advance add `M900 K0` to your [Start Gcode](https://marlinfw.org/docs/features/lin_advance.html#adding-the-k-factor-to-the-g-code-start-script)
 - To calibrate your linear advance K-factor you can use [this form](https://marlinfw.org/tools/lin_advance/k-factor.html).
-- Linear advance K-factor should be calibrated for every material which you use. To set new K-factor use `M900` command **or**
+- Linear advance K-factor should be calibrated for every material which you use. To set new K-factor use `M900` command **OR**
 - Use Linear Advance Settings plugin for Cura to use specific K-factor value in your profiles (or leave it `0` to disable Linear Advance). Can be found in Material tab.
 
 
