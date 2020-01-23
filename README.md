@@ -15,49 +15,46 @@ The DWIN TFT screen is based on [derhopp's repo](https://github.com/derhopp/Marl
 
 Instead of using factory display to manage you printer, it's highly recommended to use Octoprint, Repetier, Printrun or any other software. If you want to use the factory display to manage your printer with this firmware - it's better for you to use stock firmware.
 
-## How to flash this?
+# How to flash this?
 
-**There is always a way back to the original firmware!**
+**Remember - there is always a way back to the original firmware [Anycubic 1.1.7 (Marlin 1.1.0-RC8)](https://drive.google.com/file/d/1FwKHQcOxPabLgirkihu3LnBMuHuZLqZR/view)!**
 
-If you want to go back to the Original Anycubic 1.1.7 (Marlin 1.1.0-RC8) firmware download it from [here](https://drive.google.com/file/d/1FwKHQcOxPabLgirkihu3LnBMuHuZLqZR/view).
-
-After flashing the firmware, no matter which way, you have to reset (load default) EEPROM values using a terminal program: (e.g. [Pronterface](https://www.pronterface.com/)):
-- connect the printer to the computer via USB cable
-- open the terminal program, select the appropriate USB serial interface (on Mac: `SLAB_USBtoUART`)
-- change `baud rate` or `Baudrate` to `250000 bps`
-- connect and wait for the EEPROM values to be output
-- then send the following commands: `M502` and `M500`
-
-### Use precompiled hex:
+## Use precompiled hex:
 If you don't want to change the firmware yourself, download the latest `.hex` file from the [releases](https://github.com/rkolosovskyi/Marlin-A4MaxPro-2.0.x/releases).
 
-### Or compile it yourself:
+## Or compile it yourself:
 
 - Download and install [Arduino IDE](https://www.arduino.cc/en/main/software)
 - Clone or download this repo
 - Browse into the Marlin folder and run `Marlin.ino`
-- In the IDE, under `Tools -> Board` select `Genuino Mega 2560` and `ATmega2560`
-- Open Marlin.ino in the Marlin directory of this repo
 - [Customize if needed](http://marlinfw.org/docs/configuration/configuration.html#configuring-marlin)
 (**Configuration.h and Configuration_adv.h files are located in Marlin folder**)
+- In the Arduino IDE, under `Tools -> Board` menu select `Genuino Mega 2560` and `ATmega2560`
 - Under `Sketch` menu, select `Export compiled binary`
-- Look for the .hex file in the Marlin directory (only use the `Marlin.ino.hex`, not the `Marlin.ino.with_bootloader.hex`!)
+- Look for the *.hex files in the Marlin directory (only use the `Marlin.ino.hex`, not the `Marlin.ino.with_bootloader.hex`!)
 
-### After obtaining the hex file:
+## After obtaining the hex file
 
-**The lates CP210x USB to UART Bridge VCP Driver for your printer you can download [here](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers).**
+Flash your printer with obtained hex file. After flashing the firmware, no matter which way, you have to reset all configurable settings to their factory defaults using a terminal program (OctoPrint, Pronterface, Repetier Host, ...):
 
-- Flash the hex with Cura, OctoPrint or similar
-- Use a tool with a terminal (OctoPrint, Pronterface, Repetier Host, ...) to send commands to your printer.
-- **Important** Connect to the printer and send the following commands:
-- `M502` - load hard coded default values
-- `M500` - save them to EEPROM
+- connect the printer via USB cable
+- open the terminal program, select the appropriate USB serial interface (on Mac: `SLAB_USBtoUART`)
+- change `baud rate` or `Baudrate` to `250000 bps`
+- connect and wait for the EEPROM values to be output
+- send the following commands: `M502` and `M500`
 
-## Next steps
+`M502 Factory Reset` - to reset all configurable settings to their factory defaults. `M500 Save Settings` - to save all configurable settings to EEPROM.
 
-- **Optional:** Stock fan duct replacement (Ex: [Vortex Fan Duct](https://www.thingiverse.com/thing:3772311) or [Dowble side fan duct](https://www.thingiverse.com/thing:3763851)).
-- **Mandatory:** [Extruder PID auto tuning](https://github.com/davidramiro/Marlin-Ai3M/wiki/Calibration#pid-tuning)
-- **Mandatory:** [Extruder calibration](https://github.com/davidramiro/Marlin-Ai3M/wiki/Calibration#extruder-steps)
+**The latest CP210x USB drivers for your printer can be downloaded [here](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers).**
+
+# Calibrate Your 3D Printer
+
+***Do NOT skip this section! Your 3D printer is exceptionally accurate piece of equipment BUT ONLY if it is calibrated!***
+
+- **Optional:** (To avoid warping) Stock fan duct replacement (Ex: [Vortex Fan Duct](https://www.thingiverse.com/thing:3772311) or [Dowble side fan duct](https://www.thingiverse.com/thing:3763851)).
+- **Mandatory:** Check hotend termistor - it can be loose! Try to slightly pool or push termistor's wires. If termistor moves freely - slide it all the way in the heater block. Clamp the brass tube around termistor's wires a little to secure it.
+- **Mandatory:** [Extruder PIDs auto tuning](https://github.com/davidramiro/Marlin-Ai3M/wiki/Calibration#pid-tuning)
+- **Mandatory:** [Extruder steps calibration](https://github.com/davidramiro/Marlin-Ai3M/wiki/Calibration#extruder-steps)
 - **Recommended:** [Manual Mesh Bed Leveling](https://github.com/davidramiro/Marlin-Ai3M#manual-mesh-bed-leveling)
 - **Recommended:** [Check FAQ in davidramiro's repo](https://github.com/davidramiro/Marlin-AI3M/wiki/Frequently-Asked-Questions)
 
