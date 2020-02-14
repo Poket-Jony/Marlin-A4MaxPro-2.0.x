@@ -72,8 +72,6 @@ public:
   void kill();
   void tick();
   void filamentRunout(const ExtUI::extruder_t extruder);
-  void setCaseLight(bool state);
-  bool getCaseLight();
   void gcodeNow_P(PGM_P const gcode);
   void gcodeQueue_P(PGM_P const gcode);
   void gcodeQueue(const char* gcode);

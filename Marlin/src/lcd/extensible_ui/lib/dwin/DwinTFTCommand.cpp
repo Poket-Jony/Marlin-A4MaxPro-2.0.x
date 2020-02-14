@@ -579,7 +579,7 @@ void DwinTFTCommandClass::sendAutoPowerOff()
 
 void DwinTFTCommandClass::sendSetCaseLight()
 {
-  DwinTFT.setCaseLight(!DwinTFT.getCaseLight());
+  ExtUI::setCaseLightState(!ExtUI::getCaseLightState());
 }
 
 #endif

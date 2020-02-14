@@ -176,23 +176,6 @@ void DwinTFTClass::filamentRunout(const ExtUI::extruder_t extruder)
   #endif
 }
 
-void DwinTFTClass::setCaseLight(bool state)
-{
-  #if PIN_EXISTS(LED)
-    caseLight = state;
-    if(state) {
-        WRITE(LED_PIN, HIGH);
-    } else {
-        WRITE(LED_PIN, LOW);
-    }
-  #endif
-}
-
-bool DwinTFTClass::getCaseLight()
-{
-  return caseLight;
-}
-
 void DwinTFTClass::gcodeNow_P(PGM_P const gcode)
 {
   ExtUI::injectCommands_P(gcode);
