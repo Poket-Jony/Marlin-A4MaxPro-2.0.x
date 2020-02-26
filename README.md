@@ -35,6 +35,10 @@ If you don't want to change the firmware yourself, download the latest `.hex` fi
 - Under `Sketch` menu, select `Export compiled binary`
 - Look for the `.hex` files in the Marlin directory (only use the `Marlin.ino.hex`, not the `Marlin.ino.with_bootloader.hex`!)
 
+#### BLTouch v3.1
+- copy the config files from `/config/examples/Anycubic4MaxPro/A4MaxProBLTouch/` to `/Marlin/`
+- replace `NOZZLE_TO_PROBE_OFFSET` values with your current BLTouch mount position
+
 ### After obtaining the `.hex` file
 Flash your printer with obtained hex file. After flashing the firmware, no matter which way, you have to reset all configurable settings to their factory defaults using a terminal program (OctoPrint, [Pronterface](https://www.pronterface.com/), Repetier Host, ...):
 
