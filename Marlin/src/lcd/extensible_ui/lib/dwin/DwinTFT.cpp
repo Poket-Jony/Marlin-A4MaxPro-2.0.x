@@ -21,27 +21,10 @@
 
 #if ENABLED(DWIN_TFT)
 
-#include "Arduino.h"
-#include <inttypes.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "../../../../MarlinCore.h"
-#include "../../../../core/language.h"
-#include "../../../../core/macros.h"
-#include "../../../../core/serial.h"
 #include "../../../../gcode/queue.h"
-#include "../../../../feature/emergency_parser.h"
-#include "../../../../feature/pause.h"
 #include "../../../../libs/buzzer.h"
-#include "../../../../module/planner.h"
-#include "../../../../module/printcounter.h"
-#include "../../../../module/stepper.h"
-#include "../../../../module/temperature.h"
-#include "../../../../sd/cardreader.h"
 #include "../../ui_api.h"
-
 #if ENABLED(POWER_LOSS_RECOVERY)
   #include "../../../../feature/power_loss_recovery.h"
 #endif
@@ -127,10 +110,10 @@ void DwinTFTClass::init()
   DwinTFT.gcodeNow_P(DWIN_TFT_GCODE_INACTIVITY_ON);
 
   #ifdef STARTUP_CHIME
-    buzzer.tone(250, 554); // C#5
-    buzzer.tone(250, 740); // F#5
-    buzzer.tone(250, 554); // C#5
-    buzzer.tone(500, 831); // G#5
+    playTone(250, NOTE_C5);
+    playTone(250, NOTE_F5);
+    playTone(250, NOTE_C5);
+    playTone(500, NOTE_G5);
   #endif
 }
 
@@ -162,15 +145,8 @@ void DwinTFTClass::loop()
 
 void DwinTFTClass::filamentRunout(const ExtUI::extruder_t extruder)
 {
-  buzzer.tone(200, 1567);
-  buzzer.tone(200, 1174);
-  buzzer.tone(200, 1567);
-  buzzer.tone(200, 1174);
-  buzzer.tone(2000, 1567);
-
+  playErrorTone();
   DWIN_TFT_SERIAL_PROTOCOLPGM(DWIN_TFT_TX_FILAMENT_RUNOUT); //J15 FILAMENT LACK
-  DWIN_TFT_SERIAL_ENTER();
-  DWIN_TFT_SERIAL_PROTOCOLPGM(DWIN_TFT_TX_FILAMENT_RUNOUT); // send 2 times
   DWIN_TFT_SERIAL_ENTER();
   #ifdef DWIN_TFT_DEBUG
     SERIAL_ECHOLNPGM("TFT Serial Debug: Filament runout... J15");
@@ -282,10 +258,17 @@ bool DwinTFTClass::isWaitingForUserConfirm()
 void DwinTFTClass::waitForUserConfirm()
 {
   #if HAS_RESUME_CONTINUE
-    buzzer.tone(250, 554); // C#5
-    buzzer.tone(500, 831); // G#5
+    playSuccessTone();
+    DWIN_TFT_SERIAL_PROTOCOLPGM(DWIN_TFT_TX_PRINT_PAUSE);
+    DWIN_TFT_SERIAL_ENTER();
+    #ifdef DWIN_TFT_DEBUG
+      SERIAL_ECHOLNPAIR("TFT Serial Debug: waitForUserConfirm: ", DWIN_TFT_TX_PRINT_PAUSE);
+    #endif
     DWIN_TFT_SERIAL_PROTOCOLPGM(DWIN_TFT_TX_PRINT_PAUSE_REQ);
     DWIN_TFT_SERIAL_ENTER();
+    #ifdef DWIN_TFT_DEBUG
+      SERIAL_ECHOLNPAIR("TFT Serial Debug: waitForUserConfirm: ", DWIN_TFT_TX_PRINT_PAUSE_REQ);
+    #endif
   #endif
 }
 
@@ -314,8 +297,7 @@ void DwinTFTClass::onMeshUpdate(const int8_t xpos, const int8_t ypos, const floa
 void DwinTFTClass::onPidTuning(const ExtUI::result_t rst)
 {
   #if HAS_PID_HEATING
-    buzzer.tone(250, 831); // G#5
-    buzzer.tone(500, 554); // C#5
+    playSuccessTone();
   #endif
 }
 
@@ -336,6 +318,31 @@ void DwinTFTClass::onPrintTimerStopped()
   #ifdef DWIN_TFT_DEBUG
     SERIAL_ECHOLNPGM("TFT Serial Debug: SD print done... J14");
   #endif
+}
+
+void DwinTFTClass::playTone(const uint16_t duration, const uint16_t frequency)
+{
+  #if HAS_BUZZER
+    buzzer.tone(duration, frequency);
+  #endif
+}
+
+void DwinTFTClass::playInfoTone()
+{
+  playTone(100, NOTE_C5);
+}
+
+void DwinTFTClass::playSuccessTone()
+{
+  playTone(250, NOTE_C5);
+  playTone(500, NOTE_G5);
+}
+
+void DwinTFTClass::playErrorTone()
+{
+  playTone(250, NOTE_G5);
+  playTone(250, NOTE_C5);
+  playTone(500, NOTE_G5);
 }
 
 #endif

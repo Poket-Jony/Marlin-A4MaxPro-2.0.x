@@ -829,7 +829,7 @@ void MarlinUI::draw_status_screen() {
                 && !printingIsActive()
               #endif
             ) {
-              xy_pos_t lpos = current_position; toLogical(lpos);
+              const xy_pos_t lpos = current_position.asLogical();
               _draw_axis_value(X_AXIS, ftostr4sign(lpos.x), blink);
               lcd_put_wchar(' ');
               _draw_axis_value(Y_AXIS, ftostr4sign(lpos.y), blink);
@@ -1212,10 +1212,10 @@ void MarlinUI::draw_status_screen() {
         #define _LCD_W_POS 12
         #define _PLOT_X 1
         #define _MAP_X 3
-        #define _LABEL(C,X,Y) lcd_put_u8str(X, Y, C)
-        #define _XLABEL(X,Y) _LABEL("X:",X,Y)
-        #define _YLABEL(X,Y) _LABEL("Y:",X,Y)
-        #define _ZLABEL(X,Y) _LABEL("Z:",X,Y)
+        #define _LABEL(C,X,Y) lcd_put_u8str_P(X, Y, C)
+        #define _XLABEL(X,Y) _LABEL(X_LBL,X,Y)
+        #define _YLABEL(X,Y) _LABEL(Y_LBL,X,Y)
+        #define _ZLABEL(X,Y) _LABEL(Z_LBL,X,Y)
       #else
         #define _LCD_W_POS 8
         #define _PLOT_X 0

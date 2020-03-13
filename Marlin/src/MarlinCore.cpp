@@ -110,7 +110,7 @@
   #include "feature/I2CPositionEncoder.h"
 #endif
 
-#if HAS_TRINAMIC && DISABLED(PSU_DEFAULT_OFF)
+#if HAS_TRINAMIC_CONFIG && DISABLED(PSU_DEFAULT_OFF)
   #include "feature/tmc_util.h"
 #endif
 
@@ -192,7 +192,15 @@ const char NUL_STR[] PROGMEM = "",
            SP_X_STR[] PROGMEM = " X",
            SP_Y_STR[] PROGMEM = " Y",
            SP_Z_STR[] PROGMEM = " Z",
-           SP_E_STR[] PROGMEM = " E";
+           SP_E_STR[] PROGMEM = " E",
+              X_LBL[] PROGMEM =  "X:",
+              Y_LBL[] PROGMEM =  "Y:",
+              Z_LBL[] PROGMEM =  "Z:",
+              E_LBL[] PROGMEM =  "E:",
+           SP_X_LBL[] PROGMEM = " X:",
+           SP_Y_LBL[] PROGMEM = " Y:",
+           SP_Z_LBL[] PROGMEM = " Z:",
+           SP_E_LBL[] PROGMEM = " E:";
 
 bool Running = true;
 
@@ -642,7 +650,7 @@ inline void manage_inactivity(const bool ignore_stepper_queue=false) {
       // travel moves have been received so enact them
       delayed_move_time = 0xFFFFFFFFUL; // force moves to be done
       destination = current_position;
-      prepare_move_to_destination();
+      prepare_line_to_destination();
     }
   #endif
 
@@ -866,6 +874,7 @@ void stop() {
  *    • Digipot I2C
  *    • Z probe sled
  *    • status LEDs
+ *    • Max7219
  */
 void setup() {
 
@@ -877,10 +886,6 @@ void setup() {
 
   #if ENABLED(SMART_EFFECTOR) && PIN_EXISTS(SMART_EFFECTOR_MOD)
     OUT_WRITE(SMART_EFFECTOR_MOD_PIN, LOW);   // Put Smart Effector into NORMAL mode
-  #endif
-
-  #if ENABLED(MAX7219_DEBUG)
-    max7219.init();
   #endif
 
   #if ENABLED(DISABLE_DEBUG)
@@ -1154,7 +1159,7 @@ void setup() {
     host_action_prompt_end();
   #endif
 
-  #if HAS_TRINAMIC && DISABLED(PSU_DEFAULT_OFF)
+  #if HAS_TRINAMIC_CONFIG && DISABLED(PSU_DEFAULT_OFF)
     test_tmc_connection(true, true, true, true);
   #endif
 
@@ -1164,6 +1169,10 @@ void setup() {
 
   #if HAS_SERVICE_INTERVALS
     ui.reset_status(true);  // Show service messages or keep current status
+  #endif
+
+  #if ENABLED(MAX7219_DEBUG)
+    max7219.init();
   #endif
 }
 

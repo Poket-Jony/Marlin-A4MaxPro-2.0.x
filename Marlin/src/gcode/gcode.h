@@ -435,7 +435,7 @@ private:
     static void G27();
   #endif
 
-  static void G28(const bool always_home_all);
+  static void G28();
 
   #if HAS_LEVELING
     #if ENABLED(G29_RETRY_AND_RECOVER)
@@ -915,7 +915,7 @@ private:
     static void M900();
   #endif
 
-  #if HAS_TRINAMIC
+  #if HAS_TRINAMIC_CONFIG
     static void M122();
     static void M906();
     #if HAS_STEALTHCHOP

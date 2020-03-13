@@ -20,18 +20,17 @@
 #pragma once
 
 #include "../../../../inc/MarlinConfigPre.h"
-
-#include <stdio.h>
-
 #include "../../ui_api.h"
+
+#include "DwinTFTBuzzer.h"
 
 #define DWIN_TFT_UPDATE_INTERVAL_MS 250
 
 char *itostr2(const uint8_t &x);
 
 #ifndef ULTRA_LCD
-char *itostr3(const int);
-char *ftostr32(const float &);
+  char *itostr3(const int);
+  char *ftostr32(const float &);
 #endif
 
 const char DWIN_TFT_GCODE_G90[] PROGMEM = "G90";
@@ -87,6 +86,10 @@ public:
   void onPrintTimerStarted();
   void onPrintTimerPaused();
   void onPrintTimerStopped();
+  void playTone(const uint16_t duration, const uint16_t frequency);
+  void playInfoTone();
+  void playSuccessTone();
+  void playErrorTone();
 
 private:
   void receiveCommands();

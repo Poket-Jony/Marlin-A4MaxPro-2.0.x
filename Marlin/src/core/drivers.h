@@ -90,13 +90,15 @@
 
 // Test for supported TMC drivers that require advanced configuration
 // Does not match standalone configurations
-#define HAS_TRINAMIC (    HAS_DRIVER(TMC2130) \
-                       || HAS_DRIVER(TMC2160) \
-                       || HAS_DRIVER(TMC2208) \
-                       || HAS_DRIVER(TMC2209) \
-                       || HAS_DRIVER(TMC2660) \
-                       || HAS_DRIVER(TMC5130) \
-                       || HAS_DRIVER(TMC5160) )
+#define HAS_TRINAMIC_CONFIG (    HAS_DRIVER(TMC2130) \
+                              || HAS_DRIVER(TMC2160) \
+                              || HAS_DRIVER(TMC2208) \
+                              || HAS_DRIVER(TMC2209) \
+                              || HAS_DRIVER(TMC2660) \
+                              || HAS_DRIVER(TMC5130) \
+                              || HAS_DRIVER(TMC5160) )
+
+#define HAS_TRINAMIC HAS_TRINAMIC_CONFIG
 
 #define HAS_TRINAMIC_STANDALONE (    HAS_DRIVER(TMC2130_STANDALONE) \
                                   || HAS_DRIVER(TMC2208_STANDALONE) \
@@ -130,6 +132,8 @@
 
 #define AXIS_HAS_UART(A) (    AXIS_DRIVER_TYPE(A,TMC2208) \
                            || AXIS_DRIVER_TYPE(A,TMC2209) )
+
+#define AXIS_HAS_RXTX AXIS_HAS_UART
 
 #define AXIS_HAS_SW_SERIAL(A) ((AXIS_HAS_UART(A) && !defined(A##_HARDWARE_SERIAL)))
 
@@ -170,7 +174,7 @@
 #define HAS_STALLGUARD     ANY_AXIS_HAS(STALLGUARD)
 #define HAS_SG_RESULT      ANY_AXIS_HAS(SG_RESULT)
 #define HAS_COOLSTEP       ANY_AXIS_HAS(COOLSTEP)
-#define HAS_TMC_UART       ANY_AXIS_HAS(UART)
+#define HAS_TMC_UART       ANY_AXIS_HAS(RXTX)
 #define HAS_TMC_SPI        ANY_AXIS_HAS(SPI)
 #define HAS_TMC_SW_SERIAL  ANY_AXIS_HAS(SW_SERIAL)
 
