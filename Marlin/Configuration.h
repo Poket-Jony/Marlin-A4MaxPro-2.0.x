@@ -484,9 +484,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // A4MaxPro
-  #define DEFAULT_Kp 23.40
-  #define DEFAULT_Ki 1.96
-  #define DEFAULT_Kd 69.97
+  #define DEFAULT_Kp 24.27
+  #define DEFAULT_Ki 2.02
+  #define DEFAULT_Kd 73.05
 
   // Ultimaker
   // #define DEFAULT_Kp 22.2
@@ -1487,8 +1487,8 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 190
-#define PREHEAT_1_TEMP_BED     50
+#define PREHEAT_1_TEMP_HOTEND 210
+#define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"
